@@ -1,5 +1,9 @@
-module github.com/lhjw9810/gin-cors
+module github.com/lhjw9810/go-infra
 
-go 1.12
+go 1.14
 
-require github.com/gin-gonic/gin v1.5.0
+require (
+    github.com/gin-gonic/gin v1.6.3
+    github.com/araddon/dateparse v0.0.0-20200409225146-d820a6159ab1
+    github.com/pkg/errors v0.9.1
+)
