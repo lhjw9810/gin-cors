@@ -11,16 +11,16 @@ import (
 	"strconv"
 )
 
-// BufferPoolReader contains the IO reader and its length, and custom ContentType and other headers.
-type BufferPoolReader struct {
+// BufferPoolRender contains the IO reader and its length, and custom ContentType and other headers.
+type ByteBufferPoolRender struct {
 	ContentType   string
 	ContentLength int64
 	Reader        io.Reader
 	Headers       map[string]string
 }
 
-// Render (BufferPoolReader) writes data with custom ContentType and headers.
-func (r BufferPoolReader) Render(w http.ResponseWriter) (err error) {
+// Render (BufferPoolRender) writes data with custom ContentType and headers.
+func (r ByteBufferPoolRender) Render(w http.ResponseWriter) (err error) {
 	r.WriteContentType(w)
 	if r.ContentLength >= 0 {
 		if r.Headers == nil {
@@ -29,23 +29,17 @@ func (r BufferPoolReader) Render(w http.ResponseWriter) (err error) {
 		r.Headers["Content-Length"] = strconv.FormatInt(r.ContentLength, 10)
 	}
 	r.writeHeaders(w, r.Headers)
-	_, err = bufferpool.Copy(w, r.Reader)
+	_, err = bufferpool.Copy2(w, r.Reader)
 	return
 }
-func writeContentType(w http.ResponseWriter, value []string) {
-	header := w.Header()
-	if val := header["Content-Type"]; len(val) == 0 {
-		header["Content-Type"] = value
-	}
-}
 
-// WriteContentType (BufferPoolReader) writes custom ContentType.
-func (r BufferPoolReader) WriteContentType(w http.ResponseWriter) {
+// WriteContentType (BufferPoolRender) writes custom ContentType.
+func (r ByteBufferPoolRender) WriteContentType(w http.ResponseWriter) {
 	writeContentType(w, []string{r.ContentType})
 }
 
 // writeHeaders writes custom Header.
-func (r BufferPoolReader) writeHeaders(w http.ResponseWriter, headers map[string]string) {
+func (r ByteBufferPoolRender) writeHeaders(w http.ResponseWriter, headers map[string]string) {
 	header := w.Header()
 	for k, v := range headers {
 		if header.Get(k) == "" {
