@@ -2,7 +2,6 @@ package log
 
 import (
 	"io"
-	"os"
 
 	_ "github.com/gogap/logrus_mate/writers/rotatelogs"
 	"github.com/sirupsen/logrus"
@@ -13,7 +12,6 @@ var DefaultLogger = newDefaultLogger()
 func newDefaultLogger() ILogger {
 	rus := logrus.New()
 	rus.SetLevel(logrus.DebugLevel)
-	rus.SetOutput(os.Stdout)
 	rus.SetFormatter(&logrus.JSONFormatter{})
 	return &Logger{
 		log: rus,
