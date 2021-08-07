@@ -19,12 +19,14 @@ func newDefaultLogger() ILogger {
 }
 
 type ILogger interface {
+	Trace(Fields, interface{})
 	Debug(Fields, interface{})
 	Error(Fields, interface{})
 	Info(Fields, interface{})
 	Warn(Fields, interface{})
 	WithErr(error, interface{})
 	Debugf(string, ...interface{})
+	Tracef(string, ...interface{})
 	Errorf(string, ...interface{})
 	Infof(string, ...interface{})
 	Warnf(string, ...interface{})
@@ -36,6 +38,9 @@ type Logger struct {
 	log *logrus.Logger
 }
 
+func (f *Logger) Trace(fields Fields, message interface{}) {
+	f.log.WithFields(logrus.Fields(fields)).Traceln(message)
+}
 func (f *Logger) Debug(fields Fields, message interface{}) {
 	f.log.WithFields(logrus.Fields(fields)).Debugln(message)
 }
@@ -51,6 +56,10 @@ func (f *Logger) Warn(fields Fields, message interface{}) {
 func (f *Logger) WithErr(err error, message interface{}) {
 	f.log.WithError(err).Errorln(message)
 }
+func (f *Logger) Tracef(format string, message ...interface{}) {
+	f.log.Traceln(format, message)
+}
+
 func (f *Logger) Debugf(format string, message ...interface{}) {
 	f.log.Debugf(format, message)
 }

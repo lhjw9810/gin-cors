@@ -18,7 +18,7 @@ var logConfig = `release {
                             timestamp-format  = "2006-01-02 15:04:05"
                             disable-sorting   = false
         }
- 		out.name = "rotatelogs"
+ 		out.name = "%s"
         out.options {
                     path =  %s
                     link-name= %s
@@ -48,6 +48,7 @@ var DefaultOptions = Options{
 	Level:     DebugLevel,
 	Formatter: JsonFormatter,
 	Out: OutputOption{
+		Name:     "rotatelogs",
 		Path:     "./logs/%Y%m%d.log",
 		LinkName: "./logs/current.log",
 	},
@@ -61,6 +62,7 @@ type Options struct {
 type OutputOption struct {
 	Path     string
 	LinkName string
+	Name     string
 }
 
 func WithLevel(level Level) Option {
