@@ -94,7 +94,7 @@ func UseAdvanceOptions(opts ...Option) {
 }
 
 func useAdvanceLogger(opts Options) {
-	confString := fmt.Sprintf(logConfig, opts.Level, opts.Formatter, opts.Out.Path, opts.Out.LinkName)
+	confString := fmt.Sprintf(logConfig, opts.Level, opts.Formatter, opts.Out.Name,opts.Out.Path, opts.Out.LinkName)
 	mate, _ := logrus_mate.NewLogrusMate(
 		logrus_mate.ConfigString(
 			confString,
