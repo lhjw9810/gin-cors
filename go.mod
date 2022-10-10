@@ -1,4 +1,4 @@
-module github.com/lhjw9810/go-infra
+module github.com/lhjw9810/go-infra/v2
 
 go 1.18
 
@@ -29,7 +29,6 @@ require (
 	github.com/go-playground/validator/v10 v10.11.0
 	github.com/gogap/config v0.0.0-20190801085516-e664631840ac // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
-	github.com/jonboulle/clockwork v0.3.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/lestrrat-go/file-rotatelogs v2.4.0+incompatible // indirect
 	github.com/lestrrat-go/strftime v1.0.6 // indirect
