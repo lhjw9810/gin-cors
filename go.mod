@@ -7,7 +7,7 @@ require (
 	github.com/dlclark/regexp2 v1.7.0
 	github.com/gin-gonic/gin v1.7.7
 	github.com/gogap/logrus_mate v1.1.0
-	github.com/nyaruka/phonenumbers v1.1.1
+	github.com/nyaruka/phonenumbers v1.1.4
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.8.1
 	github.com/valyala/bytebufferpool v1.0.0

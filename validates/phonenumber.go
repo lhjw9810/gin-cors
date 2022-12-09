@@ -1,8 +1,6 @@
 package validates
 
 import (
-	"log"
-
 	"github.com/go-playground/validator/v10"
 	"github.com/nyaruka/phonenumbers"
 )
@@ -14,9 +12,11 @@ func PhoneNumber(fl validator.FieldLevel) bool {
 		if len(locale) == 0 {
 			locale = "CN"
 		}
-		p, err := phonenumbers.Parse(phone, locale)
-		log.Printf("%v", p)
-		return err == nil
+		num, err := phonenumbers.Parse(phone, locale)
+		if err != nil {
+			return false
+		}
+		return phonenumbers.IsValidNumberForRegion(num, locale)
 	}
 	return true
 }
