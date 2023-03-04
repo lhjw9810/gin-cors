@@ -1,53 +1,40 @@
 package log
 
 import (
-	"fmt"
 	"io"
-	"runtime"
 )
 
-func Debug(fields Fields, message interface{}) {
-	fields["caller"] = printCallerName()
+func Debug(fields Fields, message string) {
 	DefaultLogger.Debug(fields, message)
 }
-func Error(fields Fields, message interface{}) {
-	fields["caller"] = printCallerName()
+func Error(fields Fields, message string) {
 	DefaultLogger.Error(fields, message)
 }
-func Info(fields Fields, message interface{}) {
-	fields["caller"] = printCallerName()
+func Info(fields Fields, message string) {
 	DefaultLogger.Info(fields, message)
 }
-func Warn(fields Fields, message interface{}) {
-	fields["caller"] = printCallerName()
+func Warn(fields Fields, message string) {
 	DefaultLogger.Warn(fields, message)
 }
-func WithErr(err error, message interface{}) {
-	DefaultLogger.Error(Fields{
-		"err":    err,
-		"caller": printCallerName(),
-	}, message)
+func WithErr(err error, message string) {
+	DefaultLogger.WithErr(err, message)
 }
 
-func Debugf(fields string, message ...interface{}) {
+func Debugf(fields string, message ...string) {
 	DefaultLogger.Debugf(fields, message...)
 }
-func Errorf(fields string, message ...interface{}) {
+func Errorf(fields string, message ...string) {
 	DefaultLogger.Errorf(fields, message...)
 }
-func Infof(fields string, message ...interface{}) {
+func Infof(fields string, message ...string) {
 	DefaultLogger.Infof(fields, message...)
 }
-func Warnf(fields string, message ...interface{}) {
+func Warnf(fields string, message ...string) {
 	DefaultLogger.Warnf(fields, message...)
 }
 func IoWriter() io.Writer {
 	return DefaultLogger.IoWriter()
 }
-func printCallerName() string {
-	pc, _, _, _ := runtime.Caller(2)
-	fn := runtime.FuncForPC(pc)
-	filename, line := fn.FileLine(pc)
-
-	return filename + ",line=" + fmt.Sprintf("%d", line)
+func Sync() error {
+	return DefaultLogger.Sync()
 }

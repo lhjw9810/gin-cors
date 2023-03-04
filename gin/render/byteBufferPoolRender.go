@@ -5,10 +5,11 @@
 package render
 
 import (
-	"github.com/lhjw9810/go-infra/bufferpool"
 	"io"
 	"net/http"
 	"strconv"
+
+	"github.com/lhjw9810/go-infra/v2/bufferpool"
 )
 
 // BufferPoolRender contains the IO reader and its length, and custom ContentType and other headers.
