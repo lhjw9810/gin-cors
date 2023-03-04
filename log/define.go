@@ -84,4 +84,4 @@ func (f *Logger) Sync() error {
 	return f.log.Sync()
 }
 
-type Fields map[string]string
+type Fields map[string]interface{}
