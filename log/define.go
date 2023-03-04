@@ -24,10 +24,10 @@ type ILogger interface {
 	Info(Fields, string)
 	Warn(Fields, string)
 	WithErr(error, string)
-	Debugf(string, ...string)
-	Errorf(string, ...string)
-	Infof(string, ...string)
-	Warnf(string, ...string)
+	Debugf(string, ...interface{})
+	Errorf(string, ...interface{})
+	Infof(string, ...interface{})
+	Warnf(string, ...interface{})
 	IoWriter() io.Writer
 	Sync() error
 }
@@ -61,18 +61,18 @@ func (f *Logger) WithErr(err error, message string) {
 	f.log.Errorw(message, err)
 }
 
-func (f *Logger) Debugf(format string, message ...string) {
+func (f *Logger) Debugf(format string, message ...interface{}) {
 	f.log.Debugf(format, message)
 }
-func (f *Logger) Errorf(format string, message ...string) {
+func (f *Logger) Errorf(format string, message ...interface{}) {
 	f.log.Errorf(format, message)
 
 }
-func (f *Logger) Infof(format string, message ...string) {
+func (f *Logger) Infof(format string, message ...interface{}) {
 	f.log.Infof(format, message)
 
 }
-func (f *Logger) Warnf(format string, message ...string) {
+func (f *Logger) Warnf(format string, message ...interface{}) {
 	f.log.Warnf(format, message)
 
 }

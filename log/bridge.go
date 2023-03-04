@@ -20,16 +20,16 @@ func WithErr(err error, message string) {
 	DefaultLogger.WithErr(err, message)
 }
 
-func Debugf(fields string, message ...string) {
+func Debugf(fields string, message ...interface{}) {
 	DefaultLogger.Debugf(fields, message...)
 }
-func Errorf(fields string, message ...string) {
+func Errorf(fields string, message ...interface{}) {
 	DefaultLogger.Errorf(fields, message...)
 }
-func Infof(fields string, message ...string) {
+func Infof(fields string, message ...interface{}) {
 	DefaultLogger.Infof(fields, message...)
 }
-func Warnf(fields string, message ...string) {
+func Warnf(fields string, message ...interface{}) {
 	DefaultLogger.Warnf(fields, message...)
 }
 func IoWriter() io.Writer {
