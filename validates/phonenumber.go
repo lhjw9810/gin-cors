@@ -12,6 +12,9 @@ func PhoneNumber(fl validator.FieldLevel) bool {
 		if len(locale) == 0 {
 			locale = "CN"
 		}
+		if len(phone) == 0 {
+			return true
+		}
 		num, err := phonenumbers.Parse(phone, locale)
 		if err != nil {
 			return false
